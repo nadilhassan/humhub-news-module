@@ -1,0 +1,24 @@
+.change_layout{
+    margin-left: 10px;
+}
+.change_layout  input{
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.change_layout > input,img{
+    cursor:pointer;
+    border:2px solid transparent;
+}
+
+.change_layout > input:checked + img{
+    border:2px solid #f00;
+}
+
+.bar {
+    height: 18px;
+    background: green;
+}
+#fileprogress{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

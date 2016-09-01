@@ -1,0 +1,11 @@
+{
+  "id":"news",
+  "name":"News",
+  "description": "An easy way for firms to publish news stories",
+  "keywords": ["news","newsstory","news story", "editor"],
+  "version": "1.0.0",
+  "humhub": {
+    "minVersion": "0.20"
+  }
+
+}
