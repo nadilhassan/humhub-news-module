@@ -1,8 +1,8 @@
-# News Module
+# NEWS Module
 
 ## Description
 
-This module allows you to publish news stories to any Space -  you can upload a photo and select a layout.
+This module allows you to publish NEWS stories to any Space -  you can upload a photo and select a layout.
 
 ### Version 
 1.0
@@ -10,10 +10,10 @@ This module allows you to publish news stories to any Space -  you can upload a 
 ### Features:
 
 - Text Editor Facility
-- News With Images
+- NEWS With Images
 - Layouts Selection
-- Sidebar Widget For Latest News
-- Change Authors Of The News Stories
+- Sidebar Widget For Latest NEWS
+- Change Authors Of The NEWS Stories
 
 <br>
 __Author:__ Nadil Hassan
@@ -36,5 +36,8 @@ UK Co. Reg No. 4966976 VAT No. 826 2638 21<br>
 
 Checkout the github repository for issues and latest updates.
 <https://github.com/nadilhassan/NewsModule>
+
+ 
+
 
  
