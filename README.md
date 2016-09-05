@@ -1,5 +1,3 @@
-# NEWS Module
-
 ## Description
 
 This module allows you to publish NEWS stories to any Space -  you can upload a photo and select a layout.
@@ -36,8 +34,5 @@ UK Co. Reg No. 4966976 VAT No. 826 2638 21<br>
 
 Checkout the github repository for issues and latest updates.
 <https://github.com/nadilhassan/NewsModule>
-
- 
-
 
  

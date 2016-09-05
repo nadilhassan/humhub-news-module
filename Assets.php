@@ -18,11 +18,9 @@ class Assets extends AssetBundle
     ];
     public $js=[
         'jquery.fileupload.js',
-        'jquery.iframe-transport.js',
         'news.js',
 
     ];
-//    public $sourcePath = '@bower/select2';
     public $sourcePath = '';
 
 

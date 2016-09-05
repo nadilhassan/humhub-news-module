@@ -28,28 +28,30 @@ if($stringCount < 801){
     $prntReadMore=true;
 }
 
+
 if($news->imgfile == "" || $news->imgfile == null){
     //code removed
 }else{
     $file = \humhub\modules\file\models\File::findOne(['guid' => $news->imgfile]);
     $fileUrl = $file->getUrl();
 
+
 }
 
 if(!(is_null($currentlayout))){
     ?>
 
+<!--    <h1>--><?php //echo $contentContainer->content->id ?><!-- </h1>-->
 
-
-    <div >
+    <div class="" >
         <?php
 
 
        
         if($currentlayout->name == "loud") {
             ?>
-            <div class="row">
-                <div class="col-md-12">
+            <div class="row ">
+                <div class="col-md-12 news-margin-top">
                     <h4 class="text-center"><b><?php echo $news->title ?></b></h4>
                 </div>
             </div>
@@ -78,7 +80,7 @@ if(!(is_null($currentlayout))){
                 <?php
             }else{?>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 ">
                         <a href="<?php echo $fileUrl; ?>" data-toggle="lightbox" data-type="image" data-footer="<button type=&quot;button&quot; class=&quot;btn btn-primary pull-right&quot; data-dismiss=&quot;modal&quot;>Close</button>">
                             <img style="margin-right: 10px;"  ALIGN="left" class="thumbnail col-md-7" src="<?php echo $fileUrl;?>">
                         </a>
@@ -106,8 +108,8 @@ if(!(is_null($currentlayout))){
 
             <?php
         }else if($currentlayout->name == "quite"){?>
-            <div class="row text-center">
-                <div class="col-md-12">
+            <div class="row text-center ">
+                <div class="col-md-12 news-margin-top">
                     <h4><?php echo $news->title ?></h4>
                 </div>
             </div>
@@ -132,7 +134,7 @@ if(!(is_null($currentlayout))){
                 </div>
                 <?php
             }else{?>
-                <div class="row">
+                <div class="row news-margin-top" >
                     <div class="col-md-12">
                         <p>
                             <?php
@@ -159,7 +161,7 @@ if(!(is_null($currentlayout))){
 
         }else if($currentlayout->name == "default") { ?>
             <div class="row ">
-                <div class="col-md-12">
+                <div class="col-md-12 news-margin-top">
                     <h4 class=""><?php echo $news->title ?></h4>
                 </div>
 
@@ -185,7 +187,7 @@ if(!(is_null($currentlayout))){
                 <?php
             }else{?>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 news-margin-top">
                         <a href="<?php  echo $fileUrl; ?>" data-toggle="lightbox" data-type="image" data-footer="<button type=&quot;button&quot; class=&quot;btn btn-primary pull-right&quot; data-dismiss=&quot;modal&quot;>Close</button>">
                             <img style="margin-right: 10px;"  ALIGN=”right” class="thumbnail col-md-7" src="<?php echo  $fileUrl; ?>">
                         </a>
@@ -214,8 +216,8 @@ if(!(is_null($currentlayout))){
             <?php
             if($news->imgfile == "" || $news->imgfile == null){
                 ?>
-                <div class="row text-center">
-                    <div class="col-md-12">
+                <div class="row text-center ">
+                    <div class="col-md-12 news-margin-top">
                         <h4><?php echo $news->title ?></h4>
                     </div>
                 </div>
@@ -236,9 +238,9 @@ if(!(is_null($currentlayout))){
                 </div>
                 <?php
             }else{?>
-                <div class="row">
+                <div class="row ">
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 news-margin-top">
                         <a href="<?php echo $fileUrl; ?>" data-toggle="lightbox" data-type="image" data-footer="<button type=&quot;button&quot; class=&quot;btn btn-primary pull-right&quot; data-dismiss=&quot;modal&quot;>Close</button>">
                             <img class="thumbnail col-md-12" src="<?php echo  $fileUrl; ?>">
                         </a>
@@ -285,7 +287,7 @@ if(!(is_null($currentlayout))){
 }else{
     ?>
     <div class="row ">
-        <div class="col-md-12">
+        <div class="col-md-12 news-margin-top">
             <h4 class=""><?php echo $news->title ?></h4>
         </div>
 

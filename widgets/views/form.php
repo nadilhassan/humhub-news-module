@@ -8,7 +8,7 @@ humhub\modules\news\Assets::register($this);
 
 
 <br>
-<!--    <div id="txtEditorNews">-->
+
 <div id="txtEditorNews" class="row">
 
 
@@ -23,7 +23,7 @@ humhub\modules\news\Assets::register($this);
                 <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>"/>
                 <div class="form-group">
                     <?php
-                    echo Html::textInput('title', '', array('id' => 'contentForm_title', 'class' => 'form-control contentForm', 'placeholder' => 'Hei!, Title Me!'))
+                    echo Html::textInput('title', '', array('id' => 'contentForm_title', 'class' => 'form-control contentForm', 'placeholder' => 'Title'))
 
                     ?></div>
                 <!-- <iframe style="height: 350px; width: 100%;border: 3px solid #9d9d9d;" name="text"

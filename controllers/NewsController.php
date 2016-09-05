@@ -225,7 +225,8 @@ class NewsController extends ContentContainerController
             Yii::$app->response->format = 'json';
             $result = [];
             if ($model->validate()) {
-                $authorList = Yii::$app->request->post('news_input_author');
+                $authorInputId="news_input_author".$id;
+                $authorList = Yii::$app->request->post($authorInputId);
                 $authorChanged=false;
                 if(!($authorList=="")){
                     $authors = explode(",", $authorList);
@@ -263,9 +264,9 @@ class NewsController extends ContentContainerController
                     $result['success'] = true;
                     $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => false]));
 //                    $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
-                    if($authorChanged){
+                   /* if($authorChanged){
                         $result['authorchanged']=true;
-                    }
+                    }*/
                 }
             } else {
                 $result['errors'] = $model->getErrors();

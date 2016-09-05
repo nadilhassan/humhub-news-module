@@ -10,12 +10,19 @@ use humhub\compat\CActiveForm;
 use yii\helpers\Html;
 
 ?>
+<?php
+
+
+$layoutCollapseClassName = "collapseEditNewsLay" . $news->id;
+$authorCollapseClassName = "collapseEditAuthor" . $news->id;
+$authorInputId="news_input_author".$news->id;
+?>
 
 <div class="content_edit" id="poll_edit_<?php echo $news->id; ?>">
     <p class="errorMessage" style="color:#ff8989;display:none"></p>
     <?php
     $form = CActiveForm::begin(['id' => 'news-edit-form_' . $news->id]);
-    echo Html::hiddenInput('editguid','',['id'=>'editguid']);
+    echo Html::hiddenInput('editguid', '', ['id' => 'editguid']);
 
     echo $form->label($news, "title", ['class' => 'control-label']);
     ?>
@@ -36,36 +43,42 @@ use yii\helpers\Html;
     </div>
 
     <div class="form-group">
-        <a class="colorPrimary" role="button" data-toggle="collapse" href="#authorCollapseTwo" aria-expanded="false"
+        <a class="colorPrimary" role="button" data-toggle="collapse" href=".<?php echo $authorCollapseClassName; ?>"
+           aria-expanded="false"
            aria-controls="collapseExample">
             Edit Author
         </a>
-        <div class="collapse" id="authorCollapseTwo">
+        <div class="collapse <?php echo $authorCollapseClassName; ?>" id="">
             <div class="">
-                <?php echo Html::textInput('news_input_author', '', array('id' => 'news_input_author', 'placeholder' => '')); ?>
+                <?php echo Html::textInput($authorInputId, '', array('id' => $authorInputId, 'placeholder' => '')); ?>
 
                 <?php
                 echo humhub\modules\user\widgets\UserPicker::widget(array(
-                    'inputId' => 'news_input_author',
+                    'inputId' => $authorInputId,
+//                     'inputId' => '',
                     'userSearchUrl' => $contentContainer->createUrl('/space/membership/search', array('keyword' => '-keywordPlaceholder-')),
                     'maxUsers' => 10,
                     'placeholderText' => 'Assign An Author',
+                    'class' => 'dd'
                 ));
+
                 ?>
             </div>
         </div>
 
 
-
     </div>
     <div class="form-group">
-        <a class="colorPrimary" role="button" data-toggle="collapse" href="#collapseEditNewsLay" aria-expanded="false"
+
+
+        <a class="colorPrimary" role="button" data-toggle="collapse" href=".<?php echo $layoutCollapseClassName; ?>"
+           aria-expanded="false"
            aria-controls="collapseExample">
             Edit Layout
 
         </a>
 
-        <div class="collapse" id="collapseEditNewsLay" style="margin-top: 15px;">
+        <div class="collapse <?php echo $layoutCollapseClassName; ?>" style="margin-top: 15px;">
             <div class="">
                 <?php
                 foreach ($layouts as $lay):
@@ -86,19 +99,19 @@ use yii\helpers\Html;
                         <?php
                         if ($lay->name == "loud") {
                             $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_4.jpg';
-                            echo '<img style="width: 100px;" src="'.$fileUrl.'">';
+                            echo '<img style="width: 100px;" src="' . $fileUrl . '">';
                         } else if ($lay->name == "quite") {
                             $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_2.jpg';
 
-                            echo '<img style="width: 100px;" src="'.$fileUrl.'">';
+                            echo '<img style="width: 100px;" src="' . $fileUrl . '">';
                         } else if ($lay->name == "default") {
                             $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_4.jpg';
 
-                            echo '<img style="width: 100px;" src="'.$fileUrl.'">';
+                            echo '<img style="width: 100px;" src="' . $fileUrl . '">';
                         } else if ($lay->name == "loud story") {
                             $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_5.jpg';
 
-                            echo '<img style="width: 100px;" src="'.$fileUrl.'">';
+                            echo '<img style="width: 100px;" src="' . $fileUrl . '">';
                         }
                         ?>
 
@@ -112,7 +125,7 @@ use yii\helpers\Html;
 
     <div class="form-group">
         <div>
-        <!-- <label class="">Featured Image</label> -->
+            <!-- <label class="">Featured Image</label> -->
         </div>
         <br>
         <?php
@@ -125,7 +138,7 @@ use yii\helpers\Html;
                     <img id="imgNoImage" class="thumbnail" src="<?php echo $fileUrl; ?>"
                          style="height: 120px; width: 100%; display: block;"><br>
 
-                    <input id="editNewImageUpload" type="file" name="files[]"
+                    <input class="btn btn-info" id="editNewImageUpload" type="file" name="files[]"
                            data-url="<?php echo $contentContainer->createUrl('/file/file/upload') ?>" multiple>
                     <p id="editNewImageUploadPara"></p>
 
@@ -156,7 +169,7 @@ use yii\helpers\Html;
             done: function (e, data) {
                 $.each(data.result.files, function (index, file) {
                     $('#editNewImageUploadPara').append(file.name);
-                    $('#imgNoImage').attr('src',file.url);
+                    $('#imgNoImage').attr('src', file.url);
                     $('#editguid').val(file.guid);
 
 
@@ -225,7 +238,6 @@ use yii\helpers\Html;
     </div>
 
     <?php CActiveForm::end(); ?>
-
 
 
 </div>

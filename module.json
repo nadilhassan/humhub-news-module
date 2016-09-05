@@ -1,11 +1,11 @@
 {
   "id":"news",
-  "name":"News",
-  "description": "An easy way for firms to publish news stories",
+  "name":"NEWS",
+  "description": "This module allows you to publish NEWS stories to any Space -  you can upload a photo and select a layout",
   "keywords": ["news","newsstory","news story", "editor"],
-  "version": "1.0.0",
+  "version": "1.0.",
   "humhub": {
-    "minVersion": "0.20"
+    "minVersion": "1.1"
   }
 
 }

@@ -13,9 +13,9 @@ $bundle = \humhub\modules\news\Assets::register($this);
 ?>
 <div class="panel">
    <div class="row" style="padding: 15px;">
-       <p class="col-md-8">Would you like to create News?</p>
+       <p class="col-md-8">Would you like to create NEWS?</p>
        <button style="margin-right: 10px;" class="btn btn-primary col-md-3  pull-right" type="button" data-toggle="collapse" data-target="#collapseNewsForm" aria-expanded="false" aria-controls="collapseNewsForm">
-           <i class="glyphicon glyphicon-plus"></i>&nbsp;Add News
+           <i class="glyphicon glyphicon-plus"></i>&nbsp;Add NEWS
        </button>
    </div>
     <div class="collapse" id="collapseNewsForm">
