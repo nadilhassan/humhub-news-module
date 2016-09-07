@@ -42,9 +42,6 @@ class Module extends ContentContainerModule
     {
         parent::disableContentContainer($container);
 
-        /*foreach (News::find()->contentContainer($container)->all() as $newsStories) {
-            $newsStories->delete();
-        }*/
     }
     public function getPermissions($contentContainer = null)
     {
