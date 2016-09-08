@@ -14,7 +14,7 @@ humhub\modules\news\Assets::register($this);
     <?php humhub\widgets\PanelMenu::widget(array('id' => 'news-panel')); ?>
 
     <div class="panel-heading  bg-primary">
-        <?php echo '<strong>Latest News</strong>'; ?>
+        <strong><?php echo Yii::t('NewsModule.widgets_views_sidebar', 'Latest News'); ?></strong>
     </div>
     <div class="panel-body">
         <?php foreach ($news as $n):
@@ -31,7 +31,7 @@ humhub\modules\news\Assets::register($this);
                 <div class="media-body">
 
                     <h4><a href="<?php echo $n->content->getContainer()->createUrl('/news/news/view',['id'=>$n->id]) ?>">
-                            <strong><?php echo $n->title; ?></strong>
+                            <strong><?php echo Html::encode($n->title); ?></strong>
                         </a>
 
                     </h4>

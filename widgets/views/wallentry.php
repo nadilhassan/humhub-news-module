@@ -52,7 +52,7 @@ if(!(is_null($currentlayout))){
             ?>
             <div class="row ">
                 <div class="col-md-12 news-margin-top">
-                    <h4 class="text-center"><b><?php echo $news->title ?></b></h4>
+                    <h4 class="text-center"><b><?php echo Html::encode($news->title) ?></b></h4>
                 </div>
             </div>
             <?php
@@ -110,7 +110,7 @@ if(!(is_null($currentlayout))){
         }else if($currentlayout->name == "quite"){?>
             <div class="row text-center ">
                 <div class="col-md-12 news-margin-top">
-                    <h4><?php echo $news->title ?></h4>
+                    <h4><?php echo Html::encode($news->title) ?></h4>
                 </div>
             </div>
             <?php
@@ -162,7 +162,7 @@ if(!(is_null($currentlayout))){
         }else if($currentlayout->name == "default") { ?>
             <div class="row ">
                 <div class="col-md-12 news-margin-top">
-                    <h4 class=""><?php echo $news->title ?></h4>
+                    <h4 class=""><?php echo Html::encode($news->title) ?></h4>
                 </div>
 
             </div>
@@ -218,7 +218,7 @@ if(!(is_null($currentlayout))){
                 ?>
                 <div class="row text-center ">
                     <div class="col-md-12 news-margin-top">
-                        <h4><?php echo $news->title ?></h4>
+                        <h4><?php echo Html::encode($news->title) ?></h4>
                     </div>
                 </div>
                 <div class="row">
@@ -250,7 +250,7 @@ if(!(is_null($currentlayout))){
                 </div>
                 <div class="row text-center">
                     <div class="col-md-12">
-                        <h4><?php echo $news->title ?></h4>
+                        <h4><?php echo Html::encode($news->title) ?></h4>
                     </div>
                 </div>
                 <div class="row">
@@ -288,7 +288,7 @@ if(!(is_null($currentlayout))){
     ?>
     <div class="row ">
         <div class="col-md-12 news-margin-top">
-            <h4 class=""><?php echo $news->title ?></h4>
+            <h4 class=""><?php echo Html::encode($news->title) ?></h4>
         </div>
 
     </div>
