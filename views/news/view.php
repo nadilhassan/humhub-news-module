@@ -19,21 +19,18 @@ $container = $news->content->container;
 
     <div class="row">
         <div class="col-md-12">
-            <h4 class="text-center"><strong><?php echo $news->title ?></strong></h4>
+            <h4 class="text-center"><strong><?php echo Html::encode($news->title) ?></strong></h4>
         </div>
 
     </div>
     <br>
     <?php
-    if ($news->imgfile == "" || $news->imgfile == null) {
+if ($news->imgfile == "" || $news->imgfile == null) {
         ?>
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    <?php
-                    echo \yii\helpers\Markdown::process($news->text);
-
-                    ?>
+                    <?php echo \yii\helpers\Markdown::process($news->text); ?>
                 </p>
             </div>
         </div>
