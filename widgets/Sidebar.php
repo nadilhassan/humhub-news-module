@@ -11,6 +11,7 @@ namespace humhub\modules\news\widgets;
 
 use humhub\components\Widget;
 use humhub\modules\news\models\News;
+use humhub\modules\content\components\ActiveQueryContent;
 use Yii;
 
 class Sidebar extends Widget
@@ -20,7 +21,9 @@ class Sidebar extends Widget
 
         $hasModule=\Yii::$app->hasModule('news');
         if($hasModule){
-            $news=News::find()->orderBy('created_at DESC')->orderBy('id DESC')->limit(5)->all();
+            $news = News::find()->userRelated([
+                ActiveQueryContent::USER_RELATED_SCOPE_SPACES,
+                ActiveQueryContent::USER_RELATED_SCOPE_FOLLOWED_SPACES])->limit(5)->all();
             if (count($news) == 0) {
                 return;
             }
