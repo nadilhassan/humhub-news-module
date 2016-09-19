@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: USER
- * Date: 6/14/2016
- * Time: 11:18 AM
- */
+
 
 namespace humhub\modules\news\widgets;
 
