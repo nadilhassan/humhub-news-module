@@ -19,7 +19,7 @@ return [
         ['class' => humhub\modules\content\widgets\WallEntryControls::className(), 'event' => humhub\modules\content\widgets\WallEntryControls::EVENT_INIT, 'callback' => ['humhub\modules\news\Events', 'onWallEntryControlsInit']],
         array('class' => User::className(), 'event' => User::EVENT_BEFORE_DELETE, 'callback' => array('humhub\modules\news\Events', 'onUserDelete')),
         array('class' => Menu::className(), 'event' => Menu::EVENT_INIT, 'callback' => array('humhub\modules\news\Events', 'onSpaceMenuInit')),
-        array('class' => IntegrityController::className(), 'event' => IntegrityController::EVENT_ON_RUN, 'callback' => array('humhub\modules\news\Events', 'onIntegrityCheck')),
+ #       array('class' => IntegrityController::className(), 'event' => IntegrityController::EVENT_ON_RUN, 'callback' => array('humhub\modules\news\Events', 'onIntegrityCheck')),
         array('class' => Sidebar::className(), 'event' => Sidebar::EVENT_INIT, 'callback' => array('humhub\modules\news\Events', 'onSidebarInit')),
 
     ),
