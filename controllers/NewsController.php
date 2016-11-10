@@ -88,6 +88,7 @@ class NewsController extends ContentContainerController
 
 
         $newsModel->layout_id = $newsLayout->id;
+        \humhub\modules\file\models\File::attachPrecreated($newsModel, $imageGuid);
         return \humhub\modules\news\widgets\WallCreateForm::create($newsModel, $this->contentContainer);
 
 
