@@ -210,7 +210,12 @@ class NewsController extends ContentContainerController
                 $editguid=Yii::$app->request->post('editguid');
                 if($editguid != "" ){
 
-                    $model->imgfile=$editguid;
+                     if( $model->imageFile==""){
+                       $model->imgfile=$editguid;
+                       \humhub\modules\file\models\File::attachPrecreated($model, $editguid);
+
+                        }
+
                 }
                 if($model->save()){
                     $model = News::findOne(['id' => $id]);
