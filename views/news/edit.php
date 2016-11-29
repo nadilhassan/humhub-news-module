@@ -149,8 +149,30 @@ $authorInputId="news_input_author".$news->id;
             </div>
 
 
-            <?php
+               <?php
 
+        } else {
+            $imageFile = \humhub\modules\file\models\File::findOne(['guid' => $news->imgfile]);
+            $imageFileUrl = $imageFile->getUrl();
+
+            ?>
+            <div class="row">
+                <div class=" col-md-3">
+                    <i id="btnNewsChangeImageUpload" class="fa fa-upload colorInfo" aria-hidden="true"></i>
+                    <img class="newsimage" class="thumbnail" src="<?php echo $imageFileUrl; ?>"
+                         style="height: 120px; width: 100%; display: block;"><br>
+
+                    <input style="display: none" id="newsChangeImageUpload" type="file" name="files[]"
+                           data-url="<?php echo $contentContainer->createUrl('/file/file/upload') ?>" multiple>
+
+
+                </div>
+                <div class="col-md-9">
+
+                </div>
+            </div>
+
+            <?php
         }
         ?>
 
