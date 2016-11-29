@@ -214,7 +214,13 @@ class NewsController extends ContentContainerController
                        $model->imgfile=$editguid;
                        \humhub\modules\file\models\File::attachPrecreated($model, $editguid);
 
-                        }
+                     } else {
+                       if ($model->imageFile != $editguid) {
+                           $model->imageFile = $editguid;
+                           \humhub\modules\file\models\File::attachPrecreated($model, $editguid);
+
+                       }
+                    }
 
                 }
                 if($model->save()){
