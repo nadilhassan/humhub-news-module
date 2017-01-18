@@ -30,7 +30,11 @@ if ($news->imgfile == "" || $news->imgfile == null) {
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    <?php echo \yii\helpers\Markdown::process($news->text); ?>
+                    <?php 
+    //echo \yii\helpers\Markdown::process($news->text); 
+                    $briefText = \yii\helpers\Markdown::process($news->text);
+                    echo $briefText;
+                    ?>
                 </p>
             </div>
         </div>
@@ -50,7 +54,8 @@ if ($news->imgfile == "" || $news->imgfile == null) {
                 </a>
                 <p>
                     <?php
-                    echo \yii\helpers\Markdown::processParagraph($news->text);
+                   $briefText = \yii\helpers\Markdown::process($news->text);
+                    echo $briefText;
 
                     ?>
                 </p>
