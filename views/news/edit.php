@@ -1,13 +1,16 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: USER
  * Date: 6/6/2016
  * Time: 11:19 AM
  */
-humhub\modules\news\Assets::register($this);
-use humhub\compat\CActiveForm;
+
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+
+humhub\modules\news\Assets::register($this);
 
 ?>
 <?php
@@ -21,7 +24,7 @@ $authorInputId="news_input_author".$news->id;
 <div class="content_edit" id="poll_edit_<?php echo $news->id; ?>">
     <p class="errorMessage" style="color:#ff8989;display:none"></p>
     <?php
-    $form = CActiveForm::begin(['id' => 'news-edit-form_' . $news->id]);
+    $form = ActiveForm::begin(['id' => 'news-edit-form_' . $news->id]);
     echo Html::hiddenInput('editguid', '', ['id' => 'editguid']);
 
     echo $form->label($news, "title", ['class' => 'control-label']);
@@ -259,7 +262,7 @@ $authorInputId="news_input_author".$news->id;
 
     </div>
 
-    <?php CActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 
 </div>
