@@ -37,11 +37,11 @@ class NewsLayouts extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('NewsModule.models_NewsLayouts', 'ID',
-            'imagepath' => Yii::t('NewsModule.models_NewsLayouts', 'Imagepath',
-            'name' => Yii::t('NewsModule.models_NewsLayouts', 'Name',
-            'description' => Yii::t('NewsModule.models_NewsLayouts', 'Description',
-            'background'=> Yii::t('NewsModule.models_NewsLayouts', 'Background Color'
+            'id' => Yii::t('NewsModule.models_NewsLayouts', 'ID'),
+            'imagepath' => Yii::t('NewsModule.models_NewsLayouts', 'Imagepath'),
+            'name' => Yii::t('NewsModule.models_NewsLayouts', 'Name'),
+            'description' => Yii::t('NewsModule.models_NewsLayouts', 'Description'),
+            'background'=> Yii::t('NewsModule.models_NewsLayouts', 'Background Color'),
         ];
     }
 }
