@@ -54,13 +54,13 @@ class News extends ContentActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'text' => 'Text',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
-            'layout_id'=>'Layout ID',
-            'news'=>'News',
+            'id' => Yii::t('NewsModule.models_News', 'ID',
+            'title' => Yii::t('NewsModule.models_News', 'Title',
+            'text' => Yii::t('NewsModule.models_News', 'Text',
+            'created_at' => Yii::t('NewsModule.models_News', 'Created At',
+            'created_by' => Yii::t('NewsModule.models_News', 'Created By',
+            'layout_id'=> Yii::t('NewsModule.models_News', 'Layout ID',
+            'news'=> Yii::t('NewsModule.models_News', 'News',
         ];
     }
     public function getContentName()
