@@ -31,8 +31,8 @@ class EditForm extends Model
     public function attributeLabels()
     {
         return array(
-            'title' =>'Title',
-            'text' => 'Story',
+            'title' => Yii::t('NewsModule.models_EditForm', 'Title'),
+            'text' => Yii::t('NewsModule.models_EditForm', 'Story'),
         );
     }
 
