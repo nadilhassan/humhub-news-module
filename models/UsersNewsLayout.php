@@ -37,10 +37,10 @@ class UsersNewsLayout extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'userid' => 'Userid',
-            'layoutid' => 'Layoutid',
-            'changed_at' => 'Changed At',
+            'id' => Yii::t('NewsModule.models_UsersNewsLayout', 'ID'),
+            'userid' => Yii::t('NewsModule.models_UsersNewsLayout', 'Userid'),
+            'layoutid' => Yii::t('NewsModule.models_UsersNewsLayout', 'Layoutid'),
+            'changed_at' => Yii::t('NewsModule.models_UsersNewsLayout', 'Changed At'),
         ];
     }
 

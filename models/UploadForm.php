@@ -39,10 +39,10 @@ class UploadForm extends ContentActiveRecord
     {
         return [
 
-            'title' => 'Title',
-            'text' => 'Text',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
+            'title' => Yii::t('NewsModule.models_UploadForm', 'Title'),
+            'text' => Yii::t('NewsModule.models_UploadForm', 'Text'),
+            'created_at' => Yii::t('NewsModule.models_UploadForm', 'Created At'),
+            'created_by' => Yii::t('NewsModule.models_UploadForm', 'Created By'),
 
         ];
     }

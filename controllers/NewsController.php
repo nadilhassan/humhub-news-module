@@ -21,6 +21,7 @@ use Yii;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
 use  humhub\modules\news\models\UploadForm;
+use yii\web\HttpException;
 
 
 class NewsController extends ContentContainerController
@@ -296,7 +297,8 @@ class NewsController extends ContentContainerController
              $imageFile->delete();
          }
     }
-    public function actionEditimage(){
+
+    public function actionEditimage() {
 
     }
 
