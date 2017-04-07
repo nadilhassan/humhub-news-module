@@ -50,8 +50,10 @@ class NewsController extends ContentContainerController
         $newsModel = new News();
         if ($fileList == "") {
         } else {
-            $fileItems = explode(",", $fileList);
-            $imageGuid = $fileItems[1];
+           // $fileItems = explode(",", $fileList); -- version before 1.2
+           // $imageGuid = $fileItems[1];
+          //for 1.2 +
+             $imageGuid = $fileList[0];
             $newsModel->imgfile = $imageGuid;
 
         }
