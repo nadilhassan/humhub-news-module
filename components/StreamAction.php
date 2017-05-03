@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: USER
@@ -18,7 +19,6 @@ class StreamAction extends ContentContainerStream
     public function setupFilters()
     {
         $this->activeQuery->andWhere(['content.object_model' => News::className()]);
-
 
     }
 }
