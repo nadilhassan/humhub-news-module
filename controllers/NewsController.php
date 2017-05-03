@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User: Nadil
  * Date: 6/1/2016
@@ -12,7 +13,6 @@ use humhub\modules\content\models\Content;
 use humhub\modules\file\models\File;
 use humhub\modules\news\models\EditForm;
 
-
 use humhub\modules\news\models\News;
 use humhub\modules\news\models\NewsLayouts;
 
@@ -22,7 +22,6 @@ use yii\helpers\Url;
 use yii\web\UploadedFile;
 use  humhub\modules\news\models\UploadForm;
 use yii\web\HttpException;
-
 
 class NewsController extends ContentContainerController
 {
@@ -41,7 +40,6 @@ class NewsController extends ContentContainerController
     public function actionCreate()
     {
 
-
         if (!$this->contentContainer->permissionManager->can(new \humhub\modules\news\permissions\CreateNews())) {
             throw new HttpException(400, 'Access denied!');
         }
@@ -58,12 +56,10 @@ class NewsController extends ContentContainerController
 
         }
 
-
         $text = Yii::$app->request->post('text');
         $newsModel->title = Yii::$app->request->post('title');
         $newsModel->text = $text;
         $newsModel->created_at = date('Y-m-d h:i:s ', time());
-
 
         $authorList = Yii::$app->request->post('changeAuthor');
         if ($authorList == "") {
@@ -76,9 +72,7 @@ class NewsController extends ContentContainerController
             $newsModel->created_by = $authorId->id;
             $newsModel->content->created_by = $authorId->id;
             $newsModel->content->created_by  = $authorId->id;
-
         }
-
 
         $parsedLayoutId = Yii::$app->request->post('lay');
         if ($parsedLayoutId != "") {
@@ -89,12 +83,9 @@ class NewsController extends ContentContainerController
             $newsLayout = NewsLayouts::findOne(['name' => 'default']);
         }
 
-
         $newsModel->layout_id = $newsLayout->id;
         \humhub\modules\file\models\File::attachPrecreated($newsModel, $imageGuid);
         return \humhub\modules\news\widgets\WallCreateForm::create($newsModel, $this->contentContainer);
-
-
     }
 
     public function actionUpload()
@@ -104,20 +95,17 @@ class NewsController extends ContentContainerController
         if (\Yii::$app->request->isPost) {
 
             $newsModel = new News();
-
             $text = Yii::$app->request->post('text');
             $model->title = Yii::$app->request->post('title');
             $model->text = $text;
             $model->created_at = date('Y-m-d h:i:s ', time());
             $model->created_by = Yii::$app->user->id;
-
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload()) {
                 $model->imageFile->saveAs('/uploads/' . rand() . '.' . $model->imageFile->extension);
                 return;
             }
             return \humhub\modules\news\widgets\WallCreateForm::create($model, $this->contentContainer);
-
         }
 
         return $this->render('testupload', ['model' => $model]);
@@ -132,8 +120,6 @@ class NewsController extends ContentContainerController
         $layouts = NewsLayouts::find()
             ->all();
         $userId = Yii::$app->user->id;;
-
-
 
         return $this->render('show', array(
             'model' => $model,
@@ -153,7 +139,6 @@ class NewsController extends ContentContainerController
         } else {
             $this->redirect(Url::toRoute('/news/news/show'));
         }
-
 
     }
 
@@ -230,7 +215,6 @@ class NewsController extends ContentContainerController
                     $model = News::findOne(['id' => $id]);
                     $result['success'] = true;
                     $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => false]));
-
                 }
             } else {
                 $result['errors'] = $model->getErrors();
@@ -242,7 +226,6 @@ class NewsController extends ContentContainerController
             'layouts'=>$layouts,
             'contentContainer' => $this->contentContainer,]);
 
-       
     }
 
     public function actionReload()
@@ -251,10 +234,6 @@ class NewsController extends ContentContainerController
         $model = News::findOne(['id' => $id]);
         return $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
     }
-
- 
-
-   
 
     public function actionTest()
     {
@@ -266,7 +245,6 @@ class NewsController extends ContentContainerController
             $newsModel->text = Yii::$app->request->post('text');;
             $newsModel->created_at = date('Y-m-d h:i:s ', time());
             $newsModel->created_by = Yii::$app->user->id;
-
             $newsModel->file = UploadedFile::getInstance($newsModel, 'file');
             $imageName = rand();
             $newsModel->file->saveAs($imageName . $newsModel->file->extension);
@@ -303,6 +281,5 @@ class NewsController extends ContentContainerController
     public function actionEditimage() {
 
     }
-
 
 }
