@@ -7,32 +7,29 @@
  * Time: 11:19 AM
  */
 
-use yii\bootstrap\ActiveForm;
-use yii\helpers\Html;
-
+use yii\widgets\ActiveForm;
+use yii\helper\Html;
+use humhub\modules\user\widgets\UserPickerField;
+use humhub\compat\CHtml;
 humhub\modules\news\Assets::register($this);
-
 ?>
 <?php
-
 
 $layoutCollapseClassName = "collapseEditNewsLay" . $news->id;
 $authorCollapseClassName = "collapseEditAuthor" . $news->id;
 $authorInputId="news_input_author".$news->id;
 ?>
 
-<div class="content_edit" id="poll_edit_<?php echo $news->id; ?>">
+<div class="content_edit" id="poll_edit_<?= $news->id; ?>">
     <p class="errorMessage" style="color:#ff8989;display:none"></p>
     <?php
     $form = ActiveForm::begin(['id' => 'news-edit-form_' . $news->id]);
     echo Html::hiddenInput('editguid', '', ['id' => 'editguid']);
-
     echo $form->label($news, "title", ['class' => 'control-label']);
     ?>
+
     <div class="form-group">
-        <?php echo $form->textField($news, 'title', array('class' => 'form-control', 'id' => 'news_input_title_' . $news->id, 'placeholder' => 'Edit your news title...')); ?>
-
-
+        <?= $form->textField($news, 'title', array('class' => 'form-control', 'id' => 'news_input_title_' . $news->id, 'placeholder' => 'Edit your news title...')); ?>
     </div>
 
     <div class="form-group">
@@ -40,48 +37,44 @@ $authorInputId="news_input_author".$news->id;
         echo $form->label($news, 'Body', ['class' => 'control-label'])
         ?>
 
-        <!--    --><?php //echo \yii\helpers\Html::textArea("text",$news->text, ); ?>
-        <?php echo $form->textArea($news, 'text', array('id' => 'news_input_text_' . $news->id, 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...')) ?>
-        <?php echo \humhub\widgets\MarkdownEditor::widget(array('fieldId' => 'news_input_text_' . $news->id)); ?>
+        <!--    --><? //= \yii\helpers\Html::textArea("text",$news->text, ); ?>
+        <?= $form->textArea($news, 'text', array('id' => 'news_input_text_' . $news->id, 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...')) ?>
+        <?= \humhub\widgets\MarkdownEditor::widget(array('fieldId' => 'news_input_text_' . $news->id)); ?>
     </div>
 
     <div class="form-group">
-        <a class="colorPrimary" role="button" data-toggle="collapse" href=".<?php echo $authorCollapseClassName; ?>"
+        <a class="colorPrimary" role="button" data-toggle="collapse" href=".<?= $authorCollapseClassName; ?>"
            aria-expanded="false"
            aria-controls="collapseExample">
             Edit Author
         </a>
-        <div class="collapse <?php echo $authorCollapseClassName; ?>" id="">
+        <div class="collapse <?= $authorCollapseClassName; ?>" id="">
             <div class="">
-                <?php echo Html::textInput($authorInputId, '', array('id' => $authorInputId, 'placeholder' => '')); ?>
-
-                <?php
-                echo humhub\modules\user\widgets\UserPicker::widget(array(
+                <?= CHtml::textInput($authorInputId, '', array('id' => $authorInputId, 'placeholder' => '')); ?>
+                <?=  UserPickerField::widget([
                     'inputId' => $authorInputId,
-//                     'inputId' => '',
+                    'attribute' => 'managerGuids',
+                    'selection' => $group->manager,
+                    'url' => $url,
                     'userSearchUrl' => $contentContainer->createUrl('/space/membership/search', array('keyword' => '-keywordPlaceholder-')),
                     'maxUsers' => 10,
                     'placeholderText' => 'Assign An Author',
                     'class' => 'dd'
-                ));
-
+                ]);
                 ?>
             </div>
         </div>
 
-
     </div>
     <div class="form-group">
 
-
-        <a class="colorPrimary" role="button" data-toggle="collapse" href=".<?php echo $layoutCollapseClassName; ?>"
+        <a class="colorPrimary" role="button" data-toggle="collapse" href=".<?= $layoutCollapseClassName; ?>"
            aria-expanded="false"
            aria-controls="collapseExample">
             Edit Layout
-
         </a>
 
-        <div class="collapse <?php echo $layoutCollapseClassName; ?>" style="margin-top: 15px;">
+        <div class="collapse <?= $layoutCollapseClassName; ?>" style="margin-top: 15px;">
             <div class="">
                 <?php
                 foreach ($layouts as $lay):
@@ -98,26 +91,21 @@ $authorInputId="news_input_author".$news->id;
                                                      name="news_input_layout"
                                                      value="<?= $lay->id; ?>"/>
 
-
                         <?php
                         if ($lay->name == "loud") {
                             $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_4.jpg';
                             echo '<img style="width: 100px;" src="' . $fileUrl . '">';
                         } else if ($lay->name == "quite") {
                             $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_2.jpg';
-
                             echo '<img style="width: 100px;" src="' . $fileUrl . '">';
                         } else if ($lay->name == "default") {
                             $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_4.jpg';
-
                             echo '<img style="width: 100px;" src="' . $fileUrl . '">';
                         } else if ($lay->name == "loud story") {
                             $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_5.jpg';
-
                             echo '<img style="width: 100px;" src="' . $fileUrl . '">';
                         }
                         ?>
-
                     </label>
                     <?php
                 endforeach;
@@ -138,11 +126,11 @@ $authorInputId="news_input_author".$news->id;
             ?>
             <div class="row">
                 <div class=" col-md-3">
-                    <img id="imgNoImage" class="thumbnail" src="<?php echo $fileUrl; ?>"
+                    <img id="imgNoImage" class="thumbnail" src="<?= $fileUrl; ?>"
                          style="height: 120px; width: 100%; display: block;"><br>
 
                     <input class="btn btn-info" id="editNewImageUpload" type="file" name="files[]"
-                           data-url="<?php echo $contentContainer->createUrl('/file/file/upload') ?>" multiple>
+                           data-url="<?= $contentContainer->createUrl('/file/file/upload') ?>" multiple>
                     <p id="editNewImageUploadPara"></p>
 
                 </div>
@@ -151,38 +139,34 @@ $authorInputId="news_input_author".$news->id;
                 </div>
             </div>
 
-
                <?php
-
         } else {
             $imageFile = \humhub\modules\file\models\File::findOne(['guid' => $news->imgfile]);
             $imageFileUrl = $imageFile->getUrl();
-
             ?>
+
             <div class="row">
                 <div class=" col-md-3">
                     <i id="btnNewsChangeImageUpload" class="fa fa-upload colorInfo" aria-hidden="true"></i>
-                    <img class="newsimage" class="thumbnail" src="<?php echo $imageFileUrl; ?>"
+                    <img class="newsimage" class="thumbnail" src="<?= $imageFileUrl; ?>"
                          style="height: 120px; width: 100%; display: block;"><br>
 
                     <input style="display: none" id="newsChangeImageUpload" type="file" name="files[]"
-                           data-url="<?php echo $contentContainer->createUrl('/file/file/upload') ?>" multiple>
-
+                           data-url="<?= $contentContainer->createUrl('/file/file/upload') ?>" multiple>
 
                 </div>
-                <div class="col-md-9">
 
+                <div class="col-md-9">
                 </div>
             </div>
 
             <?php
         }
         ?>
-
     </div>
+
     <script type="text/javascript">
         $('#editNewImageUpload').fileupload({
-
             dataType: 'json',
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -196,11 +180,8 @@ $authorInputId="news_input_author".$news->id;
                     $('#editNewImageUploadPara').append(file.name);
                     $('#imgNoImage').attr('src', file.url);
                     $('#editguid').val(file.guid);
-
-
                 });
             },
-
         });
         var editNewsBeforeSendHandler = function () {
             $(".wall_<?= $news->getUniqueId() ?>").find('.errorMessage').empty().hide();
@@ -210,7 +191,6 @@ $authorInputId="news_input_author".$news->id;
             if (json.success) {
                 $entry.replaceWith(json.output);
                 if (json.authorchanged) {
-
                 }
             } else if (json.errors) {
                 var $errorMessage = $entry._find('.errorMessage');
@@ -223,12 +203,10 @@ $authorInputId="news_input_author".$news->id;
         }
     </script>
 
-
     <div class="content_edit">
         <hr/>
 
-        <?php
-        echo
+        <?=
         \humhub\widgets\AjaxButton::widget([
             'label' => 'Save',
             'ajaxOptions' => [
@@ -258,11 +236,8 @@ $authorInputId="news_input_author".$news->id;
             ]
         ]);
         ?>
-
-
     </div>
 
     <?php ActiveForm::end(); ?>
-
 
 </div>
