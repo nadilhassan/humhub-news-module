@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: USER
@@ -7,12 +8,15 @@
  */
 
 namespace humhub\modules\news\permissions;
-use humhub\libs\BasePermission;
+
 use humhub\modules\space\models\Space;
 
-class CreateNews extends BasePermission
+class CreateNews extends \humhub\libs\BasePermission
 {
 
+    /**
+     * @inheritdoc
+     */
     public $defaultAllowedGroups = [
         Space::USERGROUP_OWNER,
         Space::USERGROUP_ADMIN,
@@ -20,13 +24,25 @@ class CreateNews extends BasePermission
         Space::USERGROUP_MEMBER,
     ];
 
+    /**
+     * @inheritdoc
+     */
     protected $fixedGroups = [
-        Space::USERGROUP_USER
+        Space::USERGROUP_MEMBER
     ];
 
-    protected $title = "Create News";
+    /**
+     * @inheritdoc
+     */
+    protected $title = 'Create News';
 
-    protected $description = "Allows the user to share their story";
+    /**
+     * @inheritdoc
+     */
+    protected $description = 'Allows the user to share their story';
 
+    /**
+     * @inheritdoc
+     */
     protected $moduleId = 'news';
 }
