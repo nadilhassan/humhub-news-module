@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: USER
@@ -7,7 +8,6 @@
  */
 
 namespace humhub\modules\news\models;
-
 
 use Yii;
 
