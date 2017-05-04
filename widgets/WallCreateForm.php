@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: USER
@@ -7,7 +8,6 @@
  */
 
 namespace humhub\modules\news\widgets;
-
 
 use humhub\modules\content\widgets\WallCreateContentForm;
 use humhub\modules\news\models\EditForm;
@@ -20,11 +20,8 @@ class WallCreateForm extends WallCreateContentForm
     public $submitUrl = '/news/news/create';
     public $submitButtonText='Save';
 
-    
-
     public function renderForm()
     {
-
         $formModel=new EditForm();
         $model=new News();
         $layouts = NewsLayouts::find()
@@ -33,17 +30,15 @@ class WallCreateForm extends WallCreateContentForm
         return $this->render('form',array('model'=>$model,'news'=>$model,
             'layouts' => $layouts,
             'container' => $this->contentContainer));
-
     }
 
     public function run()
     {
         if ($this->contentContainer instanceof \humhub\modules\space\models\Space) {
 
-
             if (!$this->contentContainer->permissionManager->can(new \humhub\modules\news\permissions\CreateNews())) {
 
-//               $this->contentContainer->created_by=3;
+//               $this->contentContainer->created_by=[3];
                 return;
             }
         }
