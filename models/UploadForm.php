@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: USER
@@ -7,13 +8,14 @@
  */
 
 namespace humhub\modules\news\models;
-use yii\base\Model;
-use humhub\modules\content\components\ContentActiveRecord;
 
+use yii\base\Model;
 use yii\web\UploadedFile;
+use humhub\modules\content\components\ContentActiveRecord;
 
 class UploadForm extends ContentActiveRecord
 {
+
     /**
      * @var UploadedFile
      */
@@ -38,14 +40,13 @@ class UploadForm extends ContentActiveRecord
     public function attributeLabels()
     {
         return [
-
             'title' => Yii::t('NewsModule.models_UploadForm', 'Title'),
             'text' => Yii::t('NewsModule.models_UploadForm', 'Text'),
             'created_at' => Yii::t('NewsModule.models_UploadForm', 'Created At'),
             'created_by' => Yii::t('NewsModule.models_UploadForm', 'Created By'),
-
         ];
     }
+
     public function upload()
     {
         if ($this->validate()) {
