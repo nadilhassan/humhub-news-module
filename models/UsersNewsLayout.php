@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: USER
@@ -14,7 +15,8 @@ use yii\db\ActiveRecord;
 
 class UsersNewsLayout extends ActiveRecord
 {
-    public static function tableName()
+
+        public static function tableName()
     {
         return 'users_news_layout';
     }
@@ -43,5 +45,4 @@ class UsersNewsLayout extends ActiveRecord
             'changed_at' => Yii::t('NewsModule.models_UsersNewsLayout', 'Changed At'),
         ];
     }
-
 }
