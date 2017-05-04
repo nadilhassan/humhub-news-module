@@ -11,8 +11,10 @@ use yii\widgets\ActiveForm;
 use yii\helper\Html;
 use humhub\modules\user\widgets\UserPickerField;
 use humhub\compat\CHtml;
+
 humhub\modules\news\Assets::register($this);
 ?>
+
 <?php
 
 $layoutCollapseClassName = "collapseEditNewsLay" . $news->id;
@@ -29,7 +31,7 @@ $authorInputId="news_input_author".$news->id;
     ?>
 
     <div class="form-group">
-        <?= $form->textField($news, 'title', array('class' => 'form-control', 'id' => 'news_input_title_' . $news->id, 'placeholder' => 'Edit your news title...')); ?>
+        <?= $form->textField($news, 'title', ['class' => 'form-control', 'id' => 'news_input_title_' . $news->id, 'placeholder' => 'Edit your news title...']); ?>
     </div>
 
     <div class="form-group">
@@ -38,8 +40,8 @@ $authorInputId="news_input_author".$news->id;
         ?>
 
         <!--    --><? //= \yii\helpers\Html::textArea("text",$news->text, ); ?>
-        <?= $form->textArea($news, 'text', array('id' => 'news_input_text_' . $news->id, 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...')) ?>
-        <?= \humhub\widgets\MarkdownEditor::widget(array('fieldId' => 'news_input_text_' . $news->id)); ?>
+        <?= Html::textArea($news, 'text', ['id' => 'news_input_text_' . $news->id, 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...']) ?>
+        <?= \humhub\widgets\MarkdownEditor::widget(['fieldId' => 'news_input_text_' . $news->id]); ?>
     </div>
 
     <div class="form-group">
@@ -49,16 +51,17 @@ $authorInputId="news_input_author".$news->id;
             Edit Author
         </a>
         <div class="collapse <?= $authorCollapseClassName; ?>" id="">
-            <div class="">
-                <?= CHtml::textInput($authorInputId, '', array('id' => $authorInputId, 'placeholder' => '')); ?>
+            <div class="contentForm_options">
+               <?= Html::textInput('changeAuthor', '', ['id' => 'changeAuthor', 'placeholder' => 'Assign user(s) for this news article.']); ?>
+               
                 <?=  UserPickerField::widget([
                     'inputId' => $authorInputId,
                     'attribute' => 'managerGuids',
                     'selection' => $group->manager,
                     'url' => $url,
-                    'userSearchUrl' => $contentContainer->createUrl('/space/membership/search', array('keyword' => '-keywordPlaceholder-')),
+                    'userSearchUrl' => $contentContainer->createUrl('/space/membership/search', ['keyword' => '-keywordPlaceholder-']),
                     'maxUsers' => 10,
-                    'placeholderText' => 'Assign An Author',
+                    'placeholderText' => 'Assign author to article',
                     'class' => 'dd'
                 ]);
                 ?>
@@ -116,11 +119,13 @@ $authorInputId="news_input_author".$news->id;
 
     <div class="form-group">
         <div>
-            <!-- <label class="">Featured Image</label> -->
+            /* <label class="">Featured Image</label> */
         </div>
+
         <br>
+
         <?php
-        if ($news->imgfile == "") {
+        if ($news->imgfile == '') {
             $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/noimage.jpg';
 
             ?>
@@ -165,7 +170,7 @@ $authorInputId="news_input_author".$news->id;
         ?>
     </div>
 
-    <script type="text/javascript">
+   /* <script type="text/javascript">
         $('#editNewImageUpload').fileupload({
             dataType: 'json',
             progressall: function (e, data) {
@@ -201,9 +206,10 @@ $authorInputId="news_input_author".$news->id;
                 $errorMessage.html(errors).show();
             }
         }
-    </script>
+    </script> */
 
     <div class="content_edit">
+
         <hr/>
 
         <?=
