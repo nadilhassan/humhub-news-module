@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: USER
@@ -8,18 +9,14 @@
 
 namespace humhub\modules\news\models;
 
-
 use yii\base\Model;
 
 class EditForm extends Model
 {
-
     public $title;
     public  $text;
     public $createdat;
     public $createdby;
-
-
 
     public function rules()
     {
@@ -35,6 +32,5 @@ class EditForm extends Model
             'text' => Yii::t('NewsModule.models_EditForm', 'Story'),
         );
     }
-
 
 }
