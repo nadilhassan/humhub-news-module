@@ -1,8 +1,6 @@
 <?php
 
-
 namespace humhub\modules\news\widgets;
-
 
 use humhub\components\Widget;
 use humhub\modules\news\models\News;
@@ -11,9 +9,9 @@ use Yii;
 
 class Sidebar extends Widget
 {
+
     public function run()
     {
-
         $hasModule=\Yii::$app->hasModule('news');
         if($hasModule){
             $news = News::find()->userRelated([
@@ -23,9 +21,9 @@ class Sidebar extends Widget
                 return;
             }
 
-            return $this->render('sidebar', array(
+            return $this->render('sidebar', [
                 'news' => $news
-            ));
+            ]);
         }
 
     }
