@@ -14,15 +14,15 @@ use yii\base\Model;
 class EditForm extends Model
 {
     public $title;
-    public  $text;
+    public $text;
     public $createdat;
     public $createdby;
 
     public function rules()
     {
-        return array(
-            array(['title', 'text',], 'required'),
-        );
+        return [
+            [['title', 'text',], 'required'],
+        ];
     }
 
     public function attributeLabels()
