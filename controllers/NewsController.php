@@ -8,20 +8,18 @@
 
 namespace humhub\modules\news\controllers;
 
-use humhub\modules\content\components\ContentContainerController;
-use humhub\modules\content\models\Content;
-use humhub\modules\file\models\File;
-use humhub\modules\news\models\EditForm;
-
-use humhub\modules\news\models\News;
-use humhub\modules\news\models\NewsLayouts;
-
-use humhub\modules\user\models\User;
 use Yii;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
-use  humhub\modules\news\models\UploadForm;
-use yii\web\HttpException;
+use yii\web\HttpException;    
+use humhub\modules\content\components\ContentContainerController;
+use humhub\modules\content\models\Content;
+use humhub\modules\file\models\File;
+use humhub\modules\user\models\User;
+use humhub\modules\news\models\EditForm;
+use humhub\modules\news\models\News;
+use humhub\modules\news\models\NewsLayouts;
+use humhub\modules\news\models\UploadForm;
 
 class NewsController extends ContentContainerController
 {
@@ -114,7 +112,6 @@ class NewsController extends ContentContainerController
 
     public function actionShow()
     {
-
         $newsForm = new EditForm();
         $model = new News();
         $layouts = NewsLayouts::find()
@@ -162,7 +159,6 @@ class NewsController extends ContentContainerController
 
     public function actionEdit()
     {
-
         $id = Yii::$app->request->get('id');
         $model = News::findOne(['id' => $id]);
         $edited = false;
