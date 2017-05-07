@@ -8,7 +8,6 @@
  */
 
 use yii\bootstrap\ActiveForm;
-use humhub\modules\user\widgets\UserPicker;
 use yii\helpers\Html;
 
 humhub\modules\news\Assets::register($this);
@@ -41,20 +40,21 @@ $authorInputId="news_input_author".$news->id;
     </div>
 
     <div class="form-group">
-        <a class="colorPrimary" role="button" data-toggle="collapse" href=".<?= $authorCollapseClassName; ?>"
+        <a class="colorSecondary" role="button" data-toggle="collapse" href=".<?= $authorCollapseClassName; ?>"
            aria-expanded="false"
            aria-controls="collapseExample">
             Edit Author
         </a>
+    </div>
+
         <div class="collapse <?= $authorCollapseClassName; ?>" id="">
             <div class="">
                 <?= Html::textInput($authorInputId, '', array('id' => $authorInputId, 'placeholder' => '')); ?>
 
                 <?=
-                   UserPicker::widget(array(
+                   \humhub\modules\user\widgets\UserPicker::widget(array(
                     'inputId' => $authorInputId,
-//                     'inputId' => '',
-                    'userSearchUrl' => $contentContainer->createUrl('/space/membership/search', array('keyword' => '-keywordPlaceholder-')),
+                    'userSearchUrl' => $container->createUrl('/space/membership/search', array('keyword' => '-keywordPlaceholder-')),
                     'maxUsers' => 10,
                     'placeholderText' => 'Assign An Author',
                     'class' => 'dd'
@@ -62,11 +62,11 @@ $authorInputId="news_input_author".$news->id;
                 ?>
             </div>
         </div>
-
     </div>
+
     <div class="form-group">
 
-        <a class="colorPrimary" role="button" data-toggle="collapse" href=".<?= $layoutCollapseClassName; ?>"
+        <a class="colorSecondary" role="button" data-toggle="collapse" href=".<?= $layoutCollapseClassName; ?>"
            aria-expanded="false"
            aria-controls="collapseExample">
             Edit Layout
