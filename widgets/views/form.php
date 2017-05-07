@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use humhub\modules\user\widgets\UserPicker;
 
 humhub\modules\news\Assets::register($this);
 ?>
@@ -9,24 +10,23 @@ humhub\modules\news\Assets::register($this);
 <br>
 
 <div id="txtEditorNews" class="row">
-
     <div class="col-md-12">
 
         <div id="">
             <div class="arrow"></div>
+
             <div class="col-md-12 ">
 
                 <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>"/>
                 <div class="form-group">
-                    <?= Html::textInput('title', '', ['id' => 'contentForm_title', 'class' => 'form-control contentForm', 'placeholder' => 'Title']); ?>
-                   </div>
-                /* <iframe style="height: 350px; width: 100%;border: 3px solid #9d9d9d;" name="text"
-                    class="form-control autosize contentForm" id="contentForm_text"></iframe> */
+                    <?= Html::textInput('title', '', array('id' => 'contentForm_title', 'class' => 'form-control contentForm', 'placeholder' => 'Title'))
+                    ?></div>
+                <!-- <iframe style="height: 350px; width: 100%;border: 3px solid #9d9d9d;" name="text"
+                    class="form-control autosize contentForm"     id="contentForm_text"></iframe>-->
                 <div class="form-group">
-
-                    <?= Html::textArea("text", '', ['id' => 'contentForm_text', 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...']); ?>
-                    <?= \humhub\widgets\MarkdownEditor::widget(['fieldId' => 'contentForm_text']); ?>
-                    <!--                        --><?php //echo \humhub\widgets\RichTextEditor::widget(['id' => 'contentForm_text']); ?>
+                    <?= Html::textArea("text", '', array('id' => 'contentForm_text', 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...')); ?>
+                    <?= \humhub\widgets\MarkdownEditor::widget(array('fieldId' => 'contentForm_text')); ?>
+                    <!--                        --><?php //echo \humhub\widgets\RichTextEditor::widget(array('id' => 'contentForm_text')); ?>
                 </div>
 
                 <div class="form-group">
@@ -36,16 +36,16 @@ humhub\modules\news\Assets::register($this);
                     </a>
 
                     <div class="collapse" style="margin-top: 15px;" id="authorCollapse">
-                        <div class="contentForm_options">
-                            <?= Html::textInput('changeAuthor', '', ['id' => 'changeAuthor', 'placeholder' => 'Assign user(s) for this news article.']); ?>
+                        <div class="">
+                            <?= Html::textInput('changeAuthor', '', array('id' => 'changeAuthor', 'placeholder' => '')); ?>
 
                             <?=
-                             humhub\modules\user\widgets\UserPicker::widget([
+                            UserPicker::widget(array(
                                 'inputId' => 'changeAuthor',
-                                'userSearchUrl' => $container->createUrl('/space/membership/search', ['keyword' => '-keywordPlaceholder-']),
+                                'userSearchUrl' => $container->createUrl('/space/membership/search', array('keyword' => '-keywordPlaceholder-')),
                                 'maxUsers' => 10,
-                                'placeholderText' => 'Assign author to article.',
-                            ]);
+                                'placeholderText' => 'Assign An Author',
+                            ));
                             ?>
                         </div>
                     </div>
@@ -94,12 +94,11 @@ humhub\modules\news\Assets::register($this);
         </div>
     </div>
 </div>
-
 <br>
 
-<? //= Html::textArea("text", '', ['id' => 'contentForm_text', 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...']); ?>
-
-/*<script type="text/javascript">
+<?php //echo Html::textArea("text", '', array('id' => 'contentForm_text', 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...'));
+?>
+<!--<script type="text/javascript">
     $(function () {
         $('#featuredImageFile').fileupload({
             dataType: 'json',
@@ -119,4 +118,4 @@ humhub\modules\news\Assets::register($this);
         });
     });
 </script>
-*/
+-->
