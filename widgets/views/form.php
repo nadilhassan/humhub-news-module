@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use humhub\modules\user\widgets\UserPicker;
 
 humhub\modules\news\Assets::register($this);
 ?>
@@ -40,7 +39,7 @@ humhub\modules\news\Assets::register($this);
                             <?= Html::textInput('preassignedUsers', '', array('id' => 'preassignedUsers', 'placeholder' => 'Preassign user(s) for this task.')); ?>
 
                             <?=
-                            UserPicker::widget(array(
+                            \humhub\modules\user\widgets\UserPicker::widget(array(
                                 'inputId' => 'preassignedUsers',
                                 'userSearchUrl' => $container->createUrl('/space/membership/search', array('keyword' => '-keywordPlaceholder-')),
                                 'maxUsers' => 10,
@@ -93,9 +92,7 @@ humhub\modules\news\Assets::register($this);
             </div>
 <br>
 
-<?php //echo Html::textArea("text", '', array('id' => 'contentForm_text', 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...'));
-?>
-<!--<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(function () {
         $('#featuredImageFile').fileupload({
             dataType: 'json',
