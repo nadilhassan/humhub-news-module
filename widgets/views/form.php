@@ -25,43 +25,43 @@ humhub\modules\news\Assets::register($this);
                     class="form-control autosize contentForm"     id="contentForm_text"></iframe>-->
                 <div class="form-group">
                     <?= Html::textArea("text", '', array('id' => 'contentForm_text', 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...')); ?>
-                    <?= \humhub\widgets\MarkdownEditor::widget(array('fieldId' => 'contentForm_text')); ?>
-                    <!--                        --><?php //echo \humhub\widgets\RichTextEditor::widget(array('id' => 'contentForm_text')); ?>
+                    <?= \humhub\widgets\MarkdownEditor::widget(['fieldId' => 'contentForm_text']); ?>
                 </div>
 
                 <div class="form-group">
-                    <a class="colorPrimary" role="button" data-toggle="collapse" href="#authorCollapse"
+                    <a class="colorSecondary" role="button" data-toggle="collapse" href="#authorCollapse"
                        aria-expanded="false" aria-controls="collapseExample">
                         Edit Author
                     </a>
+                </div>
 
                     <div class="collapse" style="margin-top: 15px;" id="authorCollapse">
-                        <div class="">
-                            <?= Html::textInput('changeAuthor', '', array('id' => 'changeAuthor', 'placeholder' => '')); ?>
+                        <div class="contentForm_options">
+                            <?= Html::textInput('preassignedUsers', '', array('id' => 'preassignedUsers', 'placeholder' => 'Preassign user(s) for this task.')); ?>
 
                             <?=
                             UserPicker::widget(array(
-                                'inputId' => 'changeAuthor',
+                                'inputId' => 'preassignedUsers',
                                 'userSearchUrl' => $container->createUrl('/space/membership/search', array('keyword' => '-keywordPlaceholder-')),
                                 'maxUsers' => 10,
                                 'placeholderText' => 'Assign An Author',
                             ));
                             ?>
-                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
                 <div class="form-group">
-                    <a class="colorPrimary" role="button" data-toggle="collapse" href="#collapseNewsLay"
+                    <a class="colorSecondary" role="button" data-toggle="collapse" href="#collapseNewsLay"
                        aria-expanded="false" aria-controls="collapseExample">
                         Edit Layout
                     </a>
+                </div>
 
                     <div class="collapse" id="collapseNewsLay" style="margin-top: 15px;">
                         <div class="">
-                            <?php
-                            foreach ($layouts as $lay):
-                                ?>
+                            <?php foreach ($layouts as $lay): ?>
                                 <label class="change_layout">
                                     <p class="text-center"><?= strtoupper($lay->name) ?></p>
                                     <input id="lay<?= $lay->id; ?>" type="radio" name="lay"
@@ -91,9 +91,6 @@ humhub\modules\news\Assets::register($this);
 
                 <!-- --><? /*= Html::endForm() */ ?>
             </div>
-        </div>
-    </div>
-</div>
 <br>
 
 <?php //echo Html::textArea("text", '', array('id' => 'contentForm_text', 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...'));
