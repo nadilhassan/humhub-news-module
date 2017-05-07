@@ -38,7 +38,7 @@ class WallCreateForm extends WallCreateContentForm
 
             if (!$this->contentContainer->permissionManager->can(new \humhub\modules\news\permissions\CreateNews())) {
 
-//               $this->contentContainer->created_by=[3];
+               $this->contentContainer->created_by=[];
                 return;
             }
         }
