@@ -9,11 +9,10 @@
 
 namespace humhub\modules\news\models;
 
-use humhub\modules\content\components\ContentActiveRecord;
 use Yii;
-use yii\db\ActiveRecord;
+use humhub\modules\content\components\ContentActiveRecord;
 
-class UsersNewsLayout extends ActiveRecord
+class UsersNewsLayout extends yii\db\ActiveRecord
 {
 
         public static function tableName()
