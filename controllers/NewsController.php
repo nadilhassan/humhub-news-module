@@ -1,5 +1,4 @@
 <?php
-
 /**
  * User: Nadil
  * Date: 6/1/2016
@@ -8,18 +7,17 @@
 
 namespace humhub\modules\news\controllers;
 
-use Yii;
-use yii\helpers\Url;
-use yii\web\UploadedFile;
-use yii\web\HttpException;    
 use humhub\modules\content\components\ContentContainerController;
 use humhub\modules\content\models\Content;
 use humhub\modules\file\models\File;
-use humhub\modules\user\models\User;
 use humhub\modules\news\models\EditForm;
 use humhub\modules\news\models\News;
 use humhub\modules\news\models\NewsLayouts;
-use humhub\modules\news\models\UploadForm;
+use humhub\modules\user\models\User;
+use Yii;
+use yii\helpers\Url;
+use yii\web\UploadedFile;
+use  humhub\modules\news\models\UploadForm;
 
 class NewsController extends ContentContainerController
 {
@@ -46,12 +44,9 @@ class NewsController extends ContentContainerController
         $newsModel = new News();
         if ($fileList == "") {
         } else {
-           // $fileItems = explode(",", $fileList); -- version before 1.2
-           // $imageGuid = $fileItems[1];
-          //for 1.2 +
-             $imageGuid = $fileList[0];
+            $fileItems = explode(",", $fileList);
+            $imageGuid = $fileItems[1];
             $newsModel->imgfile = $imageGuid;
-
         }
 
         $text = Yii::$app->request->post('text');
@@ -84,6 +79,7 @@ class NewsController extends ContentContainerController
         $newsModel->layout_id = $newsLayout->id;
         \humhub\modules\file\models\File::attachPrecreated($newsModel, $imageGuid);
         return \humhub\modules\news\widgets\WallCreateForm::create($newsModel, $this->contentContainer);
+
     }
 
     public function actionUpload()
@@ -93,17 +89,20 @@ class NewsController extends ContentContainerController
         if (\Yii::$app->request->isPost) {
 
             $newsModel = new News();
+
             $text = Yii::$app->request->post('text');
             $model->title = Yii::$app->request->post('title');
             $model->text = $text;
             $model->created_at = date('Y-m-d h:i:s ', time());
             $model->created_by = Yii::$app->user->id;
+
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload()) {
                 $model->imageFile->saveAs('/uploads/' . rand() . '.' . $model->imageFile->extension);
                 return;
             }
             return \humhub\modules\news\widgets\WallCreateForm::create($model, $this->contentContainer);
+
         }
 
         return $this->render('testupload', ['model' => $model]);
@@ -112,6 +111,7 @@ class NewsController extends ContentContainerController
 
     public function actionShow()
     {
+
         $newsForm = new EditForm();
         $model = new News();
         $layouts = NewsLayouts::find()
@@ -159,6 +159,7 @@ class NewsController extends ContentContainerController
 
     public function actionEdit()
     {
+
         $id = Yii::$app->request->get('id');
         $model = News::findOne(['id' => $id]);
         $edited = false;
@@ -211,6 +212,7 @@ class NewsController extends ContentContainerController
                     $model = News::findOne(['id' => $id]);
                     $result['success'] = true;
                     $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => false]));
+
                 }
             } else {
                 $result['errors'] = $model->getErrors();
@@ -221,7 +223,6 @@ class NewsController extends ContentContainerController
             'edited' => $edited,
             'layouts'=>$layouts,
             'contentContainer' => $this->contentContainer,]);
-
     }
 
     public function actionReload()
@@ -273,8 +274,7 @@ class NewsController extends ContentContainerController
              $imageFile->delete();
          }
     }
-
-    public function actionEditimage() {
+    public function actionEditimage(){
 
     }
 
