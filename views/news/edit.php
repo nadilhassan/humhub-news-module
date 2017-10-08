@@ -44,11 +44,10 @@ echo $form->label($news, "title", ['class' => 'control-label']);
 			<div class="">
 			<?= Html::textInput($authorInputId, '', array('id' => $authorInputId, 'placeholder' => '')); ?>
 
-				<?= humhub\modules\user\widgets\UserPickerField::widget([
-					'model' => new humhub\modules\news\models\UserpickerForm,
-					'attribute' => 'guids'
-                    'maxSelection' => 1
-				]);?>
+    <button data-action-click="ui.modal.submit" data-ui-loader class="btn btn-default">
+        Send
+    </button>
+<?php \yii\widgets\ActiveForm::end() ?> 
 					</div>
 					</div>
 					</div>
