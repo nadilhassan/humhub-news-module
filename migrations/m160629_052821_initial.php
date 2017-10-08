@@ -44,7 +44,7 @@ class m160629_052821_initial extends Migration
                 'imagepath'=>'',
                 'name'=>'loud',
                 'background'=>'F5C4F4',
-                'description'=>'Layout in pink backgroudn colour'
+                'description'=>'Layout in pink background colour'
             ]);
         $this->insert('news_news_layout',
             [
