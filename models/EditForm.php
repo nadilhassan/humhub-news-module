@@ -1,36 +1,39 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: USER
- * Date: 6/1/2016
- * Time: 5:00 PM
- */
-
 namespace humhub\modules\news\models;
 
+use yii\helpers\Html;
 use yii\base\Model;
 
 class EditForm extends Model
 {
+
     public $title;
     public $text;
     public $createdat;
     public $createdby;
-
+    public $guids = [];
+    
     public function rules()
     {
-        return [
-            [['title', 'text',], 'required'],
+            return [
+            [['title', 'text',], 'required', 'guids', 'safe'],
         ];
+    }
+    
+    public function getSelectionString() {
+        if(empty($this->guids)) {
+            return 'Empty selection!';
+        } else {
+            return Html::encode(implode(', ', $this->guids));
+        }
     }
 
     public function attributeLabels()
     {
-        return [
-            'title' => Yii::t('NewsModule.models_EditForm', 'Title'),
-            'text' => Yii::t('NewsModule.models_EditForm', 'Story'),
-        ];
+        return array(
+            'title' =>'Title',
+            'text' => 'Story',
+        );
     }
-
 }
