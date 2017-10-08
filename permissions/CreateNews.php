@@ -11,12 +11,11 @@ class CreateNews extends BasePermission
         Space::USERGROUP_OWNER,
         Space::USERGROUP_ADMIN,
         Space::USERGROUP_MODERATOR,
-        Space::USERGROUP_MEMBERS,
-        Space::USERGROUP_USERS,
+        Space::USERGROUP_USER,
     ];
 
     protected $fixedGroups = [
-        Space::USERGROUP_USERS
+        Space::USERGROUP_USER
     ];
 
     protected $title = "Create News";
