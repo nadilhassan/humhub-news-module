@@ -9,22 +9,9 @@ class uninstall extends Migration
         $this->dropTable('news_news');
         $this->dropTable('news_news_layout');
     }
-
     public function down()
     {
-        echo "m160629_053040_uninstall cannot be reverted.\n";
-
+        echo "uninstall does not support migration down.\n";
         return false;
     }
-
-    /*
-    // Use safeUp/safeDown to run migration code within a transaction
-    public function safeUp()
-    {
-    }
-
-    public function safeDown()
-    {
-    }
-    */
 }

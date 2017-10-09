@@ -2,7 +2,6 @@
 
 namespace humhub\modules\news\models;
 
-
 use humhub\modules\content\components\ContentActiveRecord;
 use Yii;
 
@@ -21,11 +20,9 @@ class News extends ContentActiveRecord
     /**
      * @inheritdoc
      */
-
     public $autoAddToWall = true;
     public $wallEntryClass = 'humhub\modules\news\widgets\WallEntry';
     public $imageFile;
-
 
     public static function tableName()
     {

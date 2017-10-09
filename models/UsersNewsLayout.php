@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: USER
@@ -8,13 +9,13 @@
 
 namespace humhub\modules\news\models;
 
-use humhub\modules\content\components\ContentActiveRecord;
 use Yii;
-use yii\db\ActiveRecord;
+use humhub\modules\content\components\ContentActiveRecord;
 
-class UsersNewsLayout extends ActiveRecord
+class UsersNewsLayout extends yii\db\ActiveRecord
 {
-    public static function tableName()
+
+        public static function tableName()
     {
         return 'users_news_layout';
     }
@@ -43,5 +44,4 @@ class UsersNewsLayout extends ActiveRecord
             'changed_at' => Yii::t('NewsModule.models_UsersNewsLayout', 'Changed At'),
         ];
     }
-
 }

@@ -11,18 +11,13 @@ use humhub\modules\content\components\ContentContainerController;
 use humhub\modules\content\models\Content;
 use humhub\modules\file\models\File;
 use humhub\modules\news\models\EditForm;
-
-
 use humhub\modules\news\models\News;
 use humhub\modules\news\models\NewsLayouts;
-
 use humhub\modules\user\models\User;
 use Yii;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
 use  humhub\modules\news\models\UploadForm;
-use yii\web\HttpException;
-
 
 class NewsController extends ContentContainerController
 {
@@ -41,7 +36,6 @@ class NewsController extends ContentContainerController
     public function actionCreate()
     {
 
-
         if (!$this->contentContainer->permissionManager->can(new \humhub\modules\news\permissions\CreateNews())) {
             throw new HttpException(400, 'Access denied!');
         }
@@ -50,20 +44,15 @@ class NewsController extends ContentContainerController
         $newsModel = new News();
         if ($fileList == "") {
         } else {
-           // $fileItems = explode(",", $fileList); -- version before 1.2
-           // $imageGuid = $fileItems[1];
-          //for 1.2 +
-             $imageGuid = $fileList[0];
+            $fileItems = explode(",", $fileList);
+            $imageGuid = $fileItems[1];
             $newsModel->imgfile = $imageGuid;
-
         }
-
 
         $text = Yii::$app->request->post('text');
         $newsModel->title = Yii::$app->request->post('title');
         $newsModel->text = $text;
         $newsModel->created_at = date('Y-m-d h:i:s ', time());
-
 
         $authorList = Yii::$app->request->post('changeAuthor');
         if ($authorList == "") {
@@ -76,9 +65,7 @@ class NewsController extends ContentContainerController
             $newsModel->created_by = $authorId->id;
             $newsModel->content->created_by = $authorId->id;
             $newsModel->content->created_by  = $authorId->id;
-
         }
-
 
         $parsedLayoutId = Yii::$app->request->post('lay');
         if ($parsedLayoutId != "") {
@@ -89,11 +76,9 @@ class NewsController extends ContentContainerController
             $newsLayout = NewsLayouts::findOne(['name' => 'default']);
         }
 
-
         $newsModel->layout_id = $newsLayout->id;
         \humhub\modules\file\models\File::attachPrecreated($newsModel, $imageGuid);
         return \humhub\modules\news\widgets\WallCreateForm::create($newsModel, $this->contentContainer);
-
 
     }
 
@@ -133,8 +118,6 @@ class NewsController extends ContentContainerController
             ->all();
         $userId = Yii::$app->user->id;;
 
-
-
         return $this->render('show', array(
             'model' => $model,
             'contentContainer' => $this->contentContainer,
@@ -153,7 +136,6 @@ class NewsController extends ContentContainerController
         } else {
             $this->redirect(Url::toRoute('/news/news/show'));
         }
-
 
     }
 
@@ -241,8 +223,6 @@ class NewsController extends ContentContainerController
             'edited' => $edited,
             'layouts'=>$layouts,
             'contentContainer' => $this->contentContainer,]);
-
-       
     }
 
     public function actionReload()
@@ -251,10 +231,6 @@ class NewsController extends ContentContainerController
         $model = News::findOne(['id' => $id]);
         return $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
     }
-
- 
-
-   
 
     public function actionTest()
     {
@@ -266,7 +242,6 @@ class NewsController extends ContentContainerController
             $newsModel->text = Yii::$app->request->post('text');;
             $newsModel->created_at = date('Y-m-d h:i:s ', time());
             $newsModel->created_by = Yii::$app->user->id;
-
             $newsModel->file = UploadedFile::getInstance($newsModel, 'file');
             $imageName = rand();
             $newsModel->file->saveAs($imageName . $newsModel->file->extension);
@@ -299,10 +274,8 @@ class NewsController extends ContentContainerController
              $imageFile->delete();
          }
     }
-
-    public function actionEditimage() {
+    public function actionEditimage(){
 
     }
-
 
 }

@@ -7,22 +7,24 @@ class m160629_052821_initial extends Migration
     public function up()
     {
         $this->createTable('news_news', [
-            'id' => $this->primaryKey(),
-            'title'=>$this->string(255)->notNull(),
+            'id' => 'pk',
+            'title' => 'varchar(255) NOT NULL',
             'layout_id'=>$this->integer(11),
             'text'=>$this->text()->notNull(),
-            'created_at'=>$this->dateTime()->notNull(),
-            'created_by'=>$this->integer(11)->notNull(),
+            'created_at' => 'datetime DEFAULT NULL',
+            'created_by' => 'int(11) DEFAULT NULL',
+            'updated_at' => 'datetime DEFAULT NULL',
+            'updated_by' => 'int(11) DEFAULT NULL',
             'imgfile'=>$this->string(255),
 
         ]);
 
         $this->createTable('news_news_layout', [
-            'id' => $this->primaryKey(),
+            'id' => 'pk',
             'imagepath'=>$this->string(255),
             'name'=>$this->string(45)->notNull(),
             'background'=>$this->string(100),
-            'description'=>$this->string(255),
+            'description' => 'TEXT NULL',
         ]);
         $this->insert('news_news_layout',[
             'imagepath'=>'',
@@ -42,7 +44,7 @@ class m160629_052821_initial extends Migration
                 'imagepath'=>'',
                 'name'=>'loud',
                 'background'=>'F5C4F4',
-                'description'=>'Layout in pink backgroudn colour'
+                'description'=>'Layout in pink background colour'
             ]);
         $this->insert('news_news_layout',
             [
@@ -51,11 +53,6 @@ class m160629_052821_initial extends Migration
                 'background'=>'',
                 'description'=>'No background colour'
             ]);
-
-
-
-
-
 
     }
 

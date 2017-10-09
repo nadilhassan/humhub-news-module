@@ -6,18 +6,14 @@ use yii\helpers\Url;
 humhub\modules\news\Assets::register($this);
 ?>
 
-
 <br>
 
 <div id="txtEditorNews" class="row">
-
 
     <div class="col-md-12">
 
         <div id="">
             <div class="arrow"></div>
-
-
             <div class="col-md-12 ">
 
                 <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>"/>
@@ -41,21 +37,13 @@ humhub\modules\news\Assets::register($this);
                     </a>
                     <div class="collapse" style="margin-top: 15px;" id="authorCollapse">
                         <div class="">
-                            <?php echo Html::textInput('changeAuthor', '', array('id' => 'changeAuthor', 'placeholder' => '')); ?>
 
-                            <?php
-
-                            echo humhub\modules\user\widgets\UserPicker::widget(array(
-                                'inputId' => 'changeAuthor',
-                                'userSearchUrl' => $container->createUrl('/space/membership/search', array('keyword' => '-keywordPlaceholder-')),
-                                'maxUsers' => 10,
-                                'placeholderText' => 'Assign An Author',
-                            ));
-                            ?>
+                            <?= humhub\modules\user\widgets\UserPickerField::widget([
+    'model' => new humhub\modules\news\models\EditForm,
+    'attribute' => 'guids'
+    ]);?>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="form-group">
                     <a class="colorPrimary" role="button" data-toggle="collapse" href="#collapseNewsLay"
@@ -74,7 +62,6 @@ humhub\modules\news\Assets::register($this);
                                     <input id="lay<?= $lay->id; ?>" type="radio" name="lay"
                                            value="<?= $lay->id; ?>"/>
 
-
                                     <?php
                                     if ($lay->name == "loud") {
                                         $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_4.jpg';
@@ -90,7 +77,6 @@ humhub\modules\news\Assets::register($this);
                                         $fileUrl = Yii::$app->getModule('news')->getAssetsUrl() . '/layout_5.jpg';
                                         echo '<img style="width: 100px;" src="' . $fileUrl . '">';
 
-
                                     }
                                     ?>
 
@@ -102,18 +88,14 @@ humhub\modules\news\Assets::register($this);
                     </div>
                 </div>
 
-
                 <!-- --><? /*= Html::endForm() */ ?>
             </div>
-
-
         </div>
     </div>
 
 </div>
 <br>
 <?php //echo Html::textArea("text", '', array('id' => 'contentForm_text', 'class' => 'form-control autosize contentForm', 'rows' => '14', "tabindex" => "1", 'placeholder' => 'Write something...'));
-
 
 ?>
 <!--<script type="text/javascript">
